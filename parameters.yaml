@@ -1,0 +1,74 @@
+---
+notes:
+   1: Parameter can be adjusted during running mode
+   2: Cannot be modified in communication mode
+   3: Does not change with factory reset
+   4: Read only
+
+groups:
+   00:
+      name: Basic Parameters
+      00:
+         name: Control Method
+         description: *V/F* mode maintains a constant voltage / frequency ratio to the motor at all times.  When the drive changes speed (frequency), it also changes the output voltage to keep the ratio constant.  This is sub optimal because the V/F to achieve maximum torque is different at different speeds.  V/F mode generally cannot drive motors reliably below 6Hz.  *SLV* is SensorLess Vector control.  Using SLV, the drive attempts to produce the optimal V/F ratio for maximum torque at every speed (frequency) based on a built-in algorithm utilizing motor parameters like rated current and RPM.  SLV mode can provide useful torque down to 1Hz or even below, depending on the motor.  If your VFD is always connected to a single motor and you know its rated values, SLV will generally provide better performance.  If you will switch between multiple motors or you do not know your motor's rated parameters, using V/F mode is safe for all motors albeit with less performance.
+         range:
+            0: V/F mode
+            1: SLV mode
+         default: 0
+         notes: Parameter can be adjusted during running mode.
+      01:
+         name: Motor Rotation
+         description: The direction your motor will turn.  If you would like to swap which direction is forward and reverse, power down the VFD completely, then swap any two phases of the motor wiring.
+         range:
+            0: Forward
+            1: Reverse
+         default: 0
+         note: Parameter can be adjusted during running mode.  00-01 valid only in keypad mode.  "LOC" is displayed on the keypad when parameter 11-00 == 1 and parameter 00-01 == 1.
+      02:
+         name: Main Run Source Selection
+         description: Parameter 00-02 sets the inverter operation command main source.  For switching between main (00-02) and alternative (00-03) sources, use any of the external inputs S1 to S5 and set the relevant parameters (03-00 ~ 03-04) to [12].  See Group 03 for more information.
+         range:
+            0: Keypad
+            1: External Run/Stop
+            2: Communication
+         default: 0
+      03:
+         name: Alternative Run Source Selection
+         description: Parameter 00-03 sets the inverter operation command alternative source.  For switching between main (00-02) and alternative (00-03) sources, use any of the external inputs S1 ~ S5 and set the relevant parameters (03-00 ~ 03-04) to [12].  See 03 for more information.
+         range:
+            0: Keypad
+            1: External Run/Stop
+            2: Communication
+         default: 0
+      04:
+         name: Operation modes for external terminals
+         description: Configure operational switches.  You can use any of S1 ~ S5 (03-00 ~ 03-04) for switch input.  For 2-wire operation, set 00-04 first, before setting 03-00 ~ 03-04.  If you set 00-04 to [0], any of the switch inputs S1 ~ S5 will act as Forward/Stop if its related setting (03-00 ~ 03-04) is set to [0] and Reverse/Stop if its related setting is set to [1].  If you set 00-04 to [1], any of the switch inputs S1 ~ S5 will act as Run/Stop if its related setting (03-00 ~ 03-04) is set to [0] and Forward/Reverse if its related setting is set to [1].  If 00-04 is set to [2], terminals S1 ~ S3 are reserved for 3-wire run/stop control -- two separate momentary buttons for Run & Stop and a two-position switch for Forward/Reverse.  In this mode, 03-00 ~ 03-02 are not active.  Refer to Group 03 for more information.
+         range:
+            0: Forward/Stop - Reverse/Stop
+            1: Run/Stop - Reverse/Forward
+            2: 3-Wire Control Mode-Run/Stop
+         default: 0
+      05:
+         name: Main Frequency Source Selection
+         description: Parameter 00-05 sets the main frequency source -- the input you will use to tell the VFD what frequency to run at.  See 03-00 ~ 03-04 for details on switching between Main/Alternative frequencies.  For [2], connect a 0-10V signal source across AVI (+) and AGND (-) or connect a 1-5K Ohm potentiometer between 10V and AGND with the wiper connected to AVI.  For [3], connect a 4-20mA signal source across ACI (+) and AGND (-).  For [4], See 03-00 ~ 03-04 for details on External Up/Down switches.  For [5], set the desired frequency in register 0x2502.  For [6], see Group 10 for details on PID control.
+         range:
+            0: Arrows on Keypad
+            1: Potentiometer on Keypad
+            2: External Analog Voltage Input (AVI)
+            3: External Analog Current Input (ACI)
+            4: External Up/Down Frequency Control switches
+            5: Communication (RS-485 / Modbus) Setting Frequency
+            6: PID Output Frequency
+         default: 0
+      06:
+         name: Alternative Frequency Source Selection
+         description: Parameter 00-06 sets the alternative frequency source -- the input you will use to tell the VFD what frequency to run at.  See 03-00 ~ 03-04 for details on switching between Main/Alternative frequencies.  For [2], connect a 0-10V signal source across AVI (+) and AGND (-) or connect a 1-5K Ohm potentiometer between 10V and AGND with the wiper connected to AVI.  For [3], connect a 4-20mA signal source across ACI (+) and AGND (-).  For [4], See 03-00 ~ 03-04 for details on External Up/Down switches.  For [5], set the desired frequency in register 0x2502.  For [6], see Group 10 for details on PID control.
+         range:
+            0: Arrows on Keypad
+            1: Potentiometer on Keypad
+            2: External Analog Voltage Input (AVI)
+            3: External Analog Current Input (ACI)
+            4: External Up/Down Frequency Control switches
+            5: Communication (RS-485 / Modbus) Setting Frequency
+            6: PID Output Frequency
+         default: 0
