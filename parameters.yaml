@@ -49,7 +49,7 @@ groups:
             2: 3-Wire Control Mode-Run/Stop
          default: 0
       05:
-         name: Main Frequency Source Selection
+         name: Main Frequency Command Source Selection
          description: Parameter 00-05 sets the main frequency source -- the input you will use to tell the VFD what frequency to run at.  See 03-00 ~ 03-04 for details on switching between Main/Alternative frequencies.  For [2], connect a 0-10V signal source across AVI (+) and AGND (-) or connect a 1-5K Ohm potentiometer between 10V and AGND with the wiper connected to AVI.  For [3], connect a 4-20mA signal source across ACI (+) and AGND (-).  For [4], See 03-00 ~ 03-04 for details on External Up/Down switches.  For [5], set the desired frequency in register 0x2502.  For [6], see Group 10 for details on PID control.
          range:
             0: Arrows on Keypad
@@ -61,7 +61,7 @@ groups:
             6: PID Output Frequency
          default: 0
       06:
-         name: Alternative Frequency Source Selection
+         name: Alternative Frequency Command Source Selection
          description: Parameter 00-06 sets the alternative frequency source -- the input you will use to tell the VFD what frequency to run at.  See 03-00 ~ 03-04 for details on switching between Main/Alternative frequencies.  For [2], connect a 0-10V signal source across AVI (+) and AGND (-) or connect a 1-5K Ohm potentiometer between 10V and AGND with the wiper connected to AVI.  For [3], connect a 4-20mA signal source across ACI (+) and AGND (-).  For [4], See 03-00 ~ 03-04 for details on External Up/Down switches.  For [5], set the desired frequency in register 0x2502.  For [6], see Group 10 for details on PID control.
          range:
             0: Arrows on Keypad
@@ -71,4 +71,11 @@ groups:
             4: External Up/Down Frequency Control switches
             5: Communication (RS-485 / Modbus) Setting Frequency
             6: PID Output Frequency
+         default: 0
+      07:
+         name: Main and Alternative Frequency Command Modes
+         description: When set to [0], the frequency reference source is set by the Main Frequency parameter (00-05) or by the Alternative Frequency parameter (00-06).  You can configure any switch input S1 ~ S5 to toggle between Main and Alternative source by setting the relevant switch parameter (03-00 ~ 03-04) to [13].  When set to [1], the frequency reference becomes the sum of the main reference frequency (00-05) and alternative frequency (00-06).
+         range:
+            0: Main or Alternative Frequency
+            1: Main Frequency + Alternative Frequency
          default: 0
