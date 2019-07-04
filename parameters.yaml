@@ -84,3 +84,10 @@ groups:
          description: Displays the frequency reference when 00-05 or 00-06 is set to communication control [5].  Read-only.
          range: [0,599]
          unit: Hz
+      09:
+         name: Frequency Command save on power down (Communication mode)
+         description: Selects the reference frequency to save when the VFD is powered down.
+         range:
+            0: Keypad frequency
+            1: Frequency set via communication
+         default: 0
