@@ -92,10 +92,16 @@ groups:
             1: Frequency set via communication
          default: 0
       10:
-         name: Initial Frequency Selection (keypad mode)
+         name: Initial Frequency Selection
          description: Selects the initial frequency when powering up in keypad mode.
          range:
             0: Last known frequency
             1: Zero [0]
             2: Value stored in 00-11
          default: 0
+      11:
+         name: Initial Frequency Setpoint
+         description: Defines the initial power-up frequency to use when 00-10 is set to [2].
+         range: [0,599]
+         unit: Hz
+         default: 60
