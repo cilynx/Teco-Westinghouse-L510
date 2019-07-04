@@ -105,3 +105,15 @@ groups:
          range: [0,599]
          unit: Hz
          default: 60
+      12:
+         name: Frequency Upper Limit
+         description: Maximum frequency the VFD will send to the motor.
+         range: [0.01,599]
+         unit: Hz
+         default: 60
+      13:
+         name: Frequency Lower Limit
+         description: If set to [0], keypad display will show "Stpo" when RUN is pressed and the command frequency is [0].  When the frequency command is greater than 00-13, the inverter output will ramp up from [0] to the command frequency.  When 00-13 is greater than [0] and the frequency command value is smaller or equal to 00-13, the inverter output will ramp up to 00-13.
+         range: [0,649.99]
+         unit: Hz
+         default: 0
