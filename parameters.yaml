@@ -98,3 +98,4 @@ groups:
             0: Last known frequency
             1: Zero [0]
             2: Value stored in 00-11
+         default: 0
