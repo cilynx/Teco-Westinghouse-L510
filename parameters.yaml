@@ -79,3 +79,8 @@ groups:
             0: Main or Alternative Frequency
             1: Main Frequency + Alternative Frequency
          default: 0
+      08:
+         name: Communication Frequency Command
+         description: Displays the frequency reference when 00-05 or 00-06 is set to communication control [5].  Read-only.
+         range: [0,599]
+         unit: Hz
